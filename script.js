@@ -5,6 +5,26 @@
 
 'use strict';
 
+// ── Pinhead.ink inline SVGs ──────────────────────────────────────
+// Sources: pinhead.ink (row_houses, arrow_top_right) and
+//          github.com/waysidemapping/pinhead (crowd_of_people)
+
+const SVG = {
+  row_houses: `<svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M10 14L5 14L5 11L3 11L3 14L1 14L1 5.5L14 5.5L14 14L12 14L12 11L10 11L10 14ZM7.25 13L7.75 13L7.75 6.5L7.25 6.5L7.25 13ZM3 7L3 9L5 9L5 7L3 7ZM12 7L10 7L10 9L12 9L12 7ZM11 0.5L14.5 4L14.5 5L0.5 5L0.5 4L4 0.5L7.5 4L11 0.5Z"/></svg>`,
+
+  crowd_of_people: `<svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M5.4 1.37C5.4 0.62 6.01 0 6.75 0C7.5 0 8.11 0.62 8.11 1.37C8.11 2.13 7.5 2.74 6.75 2.74C6.01 2.74 5.4 2.13 5.4 1.37ZM3.94 10.66C3.94 11.42 4.55 12.04 5.29 12.04C6.04 12.04 6.65 11.42 6.65 10.66C6.65 9.91 6.04 9.29 5.29 9.29C4.55 9.29 3.94 9.91 3.94 10.66ZM5.78 8.26C6.26 8.36 6.69 8.6 7.01 8.95C6.79 8.58 6.66 8.14 6.66 7.7C6.66 6.45 7.59 5.41 8.81 5.29C8.93 5.27 9.05 5.27 9.16 5.28L9.16 4.69C9.06 4.17 8.59 3.78 8.04 3.78L5.52 3.78C5.17 3.78 4.85 3.93 4.63 4.21L4.67 4.32L4.61 4.32C4.71 4.59 4.77 4.88 4.77 5.17C4.77 5.7 4.59 6.22 4.27 6.65C5.03 6.87 5.61 7.49 5.78 8.26ZM7.7 7.71C7.7 8.46 8.31 9.08 9.06 9.08C9.8 9.08 10.41 8.46 10.41 7.71C10.41 6.95 9.8 6.34 9.06 6.34C8.31 6.34 7.7 6.95 7.7 7.71ZM12.59 4.86C13.34 4.86 13.95 4.24 13.95 3.48C13.95 2.73 13.34 2.11 12.59 2.11C11.85 2.11 11.24 2.73 11.24 3.48C11.24 4.24 11.85 4.86 12.59 4.86ZM3.4 12.15C3.08 11.73 2.9 11.21 2.9 10.67C2.9 9.55 3.65 8.58 4.72 8.31C4.54 7.88 4.12 7.61 3.67 7.61L1.2 7.61C0.77 7.61 0.36 7.81 0.15 8.19C0.05 8.37 0 8.57 0 8.77L0 9.61L0.01 12.9L1.25 12.9L1.25 15L1.88 15L1.88 14.26C1.88 13.29 2.5 12.45 3.4 12.15ZM2.4 6.55C3.15 6.55 3.76 5.94 3.76 5.18C3.76 4.42 3.15 3.81 2.4 3.81C1.66 3.81 1.05 4.42 1.05 5.18C1.05 5.94 1.66 6.55 2.4 6.55ZM11.44 11.06C11.33 10.54 10.89 10.16 10.36 10.14L7.79 10.14C7.75 10.14 7.7 10.14 7.65 10.15C7.69 10.32 7.7 10.49 7.7 10.66C7.7 11.18 7.53 11.69 7.22 12.11L7.49 12.24C8.14 12.54 8.6 13.13 8.73 13.83L8.75 13.91L8.75 15L11.46 15L11.46 11.28C11.46 11.25 11.45 11.22 11.45 11.19L11.44 11.07ZM13.86 5.92L10.67 5.92C11.17 6.38 11.45 7.03 11.46 7.71C11.46 8.24 11.28 8.76 10.97 9.18C12.46 9.59 12.5 11.28 12.5 11.3L12.5 15L13.75 15L13.75 11.2L15 11.2L15 7.07C15 6.43 14.49 5.92 13.86 5.92ZM6.59 13.1L4.06 13.1C3.75 13.1 3.47 13.22 3.25 13.44C3.03 13.66 2.92 13.95 2.92 14.26L2.92 15L7.71 15L7.71 14.01C7.6 13.49 7.13 13.1 6.59 13.1Z"/></svg>`,
+
+  arrow_top_right: `<svg class="stat-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M11.74 10.63C12.29 10.63 12.75 10.17 12.75 9.62L12.75 3.26C12.75 2.71 12.29 2.25 11.74 2.25L5.38 2.25C4.83 2.25 4.37 2.71 4.37 3.26C4.37 3.81 4.83 4.26 5.38 4.26L9.27 4.32L2.55 11.04C2.16 11.43 2.16 12.06 2.55 12.45C2.94 12.84 3.58 12.84 3.96 12.45L10.68 5.73L10.74 9.62C10.74 10.17 11.19 10.63 11.74 10.63Z"/></svg>`,
+
+  arrow_bottom_left: `<svg class="stat-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M3.26 4.37C2.71 4.37 2.26 4.83 2.26 5.38L2.26 11.74C2.26 12.29 2.71 12.75 3.26 12.75L9.62 12.75C10.17 12.75 10.63 12.29 10.63 11.74C10.63 11.19 10.17 10.74 9.62 10.74L5.73 10.68L12.45 3.96C12.84 3.57 12.84 2.94 12.45 2.55C12.06 2.16 11.43 2.16 11.04 2.55L4.32 9.27L4.26 5.38C4.26 4.83 3.81 4.37 3.26 4.37Z"/></svg>`,
+};
+
+// Returns the correct directional arrow SVG based on sign of a numeric value
+function dirArrow(v) {
+  if (v == null || isNaN(v)) return '';
+  return v >= 0 ? SVG.arrow_top_right : SVG.arrow_bottom_left;
+}
+
 // ── Config ──────────────────────────────────────────────────────
 
 const GEOJSON_PATH = 'data/neighborhoods.geojson';
@@ -280,27 +300,48 @@ function populatePanel(p) {
   }
 
   // ── Top stats grid ──
+  // icon: optional SVG to show above the label (pinhead.ink)
+  // arrow: if true, append directional arrow to the value based on its sign
   const topStats = [
-    { label: 'Population',    value: fmtNum(p.pop_total) },
-    { label: 'Median Income', value: fmtDollar(p.med_hh_income) },
-    { label: 'Median Rent',   value: fmtDollar(p.med_gross_rent) },
-    { label: '% Renters',     value: fmtPct(p.pct_renters) },
+    {
+      label: 'Population',
+      value: fmtNum(p.pop_total),
+      icon: SVG.crowd_of_people,
+    },
+    {
+      label: 'Median Income',
+      value: fmtDollar(p.med_hh_income),
+    },
+    {
+      label: 'Median Rent',
+      value: fmtDollar(p.med_gross_rent),
+      icon: SVG.row_houses,
+    },
+    {
+      label: '% Renters',
+      value: fmtPct(p.pct_renters),
+    },
     {
       label: '5-yr Pop Change',
       value: fmtChg(p.pop_change_pct),
-      cls: p.pop_change_pct >= 0 ? 'positive' : 'negative',
+      cls:   p.pop_change_pct >= 0 ? 'positive' : 'negative',
+      icon:  SVG.crowd_of_people,
+      arrow: p.pop_change_pct,
     },
     {
       label: '5-yr Income Change',
       value: fmtChg(p.income_change_pct),
-      cls: p.income_change_pct >= 0 ? 'positive' : 'negative',
+      cls:   p.income_change_pct >= 0 ? 'positive' : 'negative',
+      icon:  SVG.crowd_of_people,
+      arrow: p.income_change_pct,
     },
   ];
 
   document.getElementById('topStats').innerHTML = topStats.map(s => `
     <div class="stat-cell">
+      ${s.icon || ''}
       <div class="stat-label">${s.label}</div>
-      <div class="stat-value ${s.cls || ''}">${s.value}</div>
+      <div class="stat-value ${s.cls || ''}">${s.value}${s.arrow != null ? dirArrow(s.arrow) : ''}</div>
     </div>`).join('');
 
   // ── Customer Base tab ──

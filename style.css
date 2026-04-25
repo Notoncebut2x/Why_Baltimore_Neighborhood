@@ -269,15 +269,26 @@ body.panel-open #map {
   border-bottom-color: var(--accent);
 }
 
-/* Pinhead icons inside tab buttons */
-.tab-icon {
+/* Pinhead icons inside stat cells — pinhead.ink */
+.stat-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  opacity: 0.45;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+/* Direction arrow shown next to change % values */
+.stat-arrow {
   display: inline-block;
   width: 13px;
   height: 13px;
   fill: currentColor;
   vertical-align: middle;
-  margin-right: 5px;
-  margin-bottom: 1px;   /* optical alignment */
+  margin-left: 4px;
+  margin-bottom: 1px;
   flex-shrink: 0;
 }
 

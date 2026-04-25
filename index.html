@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Baltimore — Neighborhood Profiles</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Top bar ────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="topbar-logo">WHY</span>
+      <span class="topbar-title">Baltimore Neighborhood Profiles</span>
+    </div>
+
+    <!-- Variable switcher -->
+    <div class="topbar-controls">
+      <label for="varSelect" class="control-label">Map by</label>
+      <select id="varSelect" class="var-select">
+        <option value="med_hh_income">Median HH Income</option>
+        <option value="med_gross_rent">Median Gross Rent</option>
+        <option value="med_home_value">Median Home Value</option>
+        <option value="pop_total">Total Population</option>
+        <option value="pct_renters">% Renters</option>
+        <option value="pct_bachelors_plus">% Bachelor's+</option>
+        <option value="pct_vacant">Vacancy Rate</option>
+        <option value="pop_change_pct">5-yr Pop Change %</option>
+        <option value="income_change_pct">5-yr Income Change %</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- ── Map ───────────────────────────────────────────────────────── -->
+  <div id="map"></div>
+
+  <!-- ── Side panel ────────────────────────────────────────────────── -->
+  <aside id="panel" class="panel panel-closed">
+
+    <button id="panelClose" class="panel-close" title="Close panel">&#x2715;</button>
+
+    <!-- Neighborhood name -->
+    <div class="panel-header">
+      <h2 id="panelName" class="panel-name">—</h2>
+      <p id="panelSignals" class="panel-signals"></p>
+    </div>
+
+    <!-- ── Top stats ── -->
+    <section class="stat-grid" id="topStats"></section>
+
+    <!-- ── Tabbed sections ── -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="customer">Customer Base</button>
+      <button class="tab-btn" data-tab="housing">Housing &amp; Market</button>
+      <button class="tab-btn" data-tab="trends">Trends</button>
+    </div>
+
+    <div id="tab-customer" class="tab-pane active">
+      <div class="panel-section" id="customerStats"></div>
+      <canvas id="chartAge"    class="panel-chart"></canvas>
+      <canvas id="chartCommute" class="panel-chart"></canvas>
+    </div>
+
+    <div id="tab-housing" class="tab-pane">
+      <div class="panel-section" id="housingStats"></div>
+      <canvas id="chartTenure"  class="panel-chart"></canvas>
+      <canvas id="chartVacancy" class="panel-chart"></canvas>
+    </div>
+
+    <div id="tab-trends" class="tab-pane">
+      <div class="panel-section" id="trendStats"></div>
+      <canvas id="chartTrends"  class="panel-chart"></canvas>
+    </div>
+
+  </aside>
+
+  <!-- ── Legend ────────────────────────────────────────────────────── -->
+  <div id="legend" class="legend"></div>
+
+  <!-- ── Scripts ───────────────────────────────────────────────────── -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

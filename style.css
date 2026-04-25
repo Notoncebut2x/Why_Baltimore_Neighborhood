@@ -269,6 +269,18 @@ body.panel-open #map {
   border-bottom-color: var(--accent);
 }
 
+/* Pinhead icons inside tab buttons */
+.tab-icon {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-bottom: 1px;   /* optical alignment */
+  flex-shrink: 0;
+}
+
 /* ── Tab panes ────────────────────────────────────────────────── */
 .tab-pane { display: none; padding-bottom: 24px; }
 .tab-pane.active { display: block; }

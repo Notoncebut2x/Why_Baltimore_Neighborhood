@@ -17,6 +17,8 @@ const SVG = {
   arrow_top_right: `<svg class="stat-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M11.74 10.63C12.29 10.63 12.75 10.17 12.75 9.62L12.75 3.26C12.75 2.71 12.29 2.25 11.74 2.25L5.38 2.25C4.83 2.25 4.37 2.71 4.37 3.26C4.37 3.81 4.83 4.26 5.38 4.26L9.27 4.32L2.55 11.04C2.16 11.43 2.16 12.06 2.55 12.45C2.94 12.84 3.58 12.84 3.96 12.45L10.68 5.73L10.74 9.62C10.74 10.17 11.19 10.63 11.74 10.63Z"/></svg>`,
 
   arrow_bottom_left: `<svg class="stat-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M3.26 4.37C2.71 4.37 2.26 4.83 2.26 5.38L2.26 11.74C2.26 12.29 2.71 12.75 3.26 12.75L9.62 12.75C10.17 12.75 10.63 12.29 10.63 11.74C10.63 11.19 10.17 10.74 9.62 10.74L5.73 10.68L12.45 3.96C12.84 3.57 12.84 2.94 12.45 2.55C12.06 2.16 11.43 2.16 11.04 2.55L4.32 9.27L4.26 5.38C4.26 4.83 3.81 4.37 3.26 4.37Z"/></svg>`,
+
+  banknote: `<svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" aria-hidden="true"><path d="M1 3C0.45 3 0 3.45 0 4v7c0 0.55 0.45 1 1 1h13c0.55 0 1 -0.45 1 -1V4c0 -0.55 -0.45 -1 -1 -1H1zM1 4h1.5C2.78 4 3 4.22 3 4.5S2.78 5 2.5 5S2 4.78 2 4.5L1.5 5C1.78 5 2 5.22 2 5.5S1.78 6 1.5 6S1 5.78 1 5.5V4zM7.5 4C8.88 4 10 5.57 10 7.5l0 0C10 9.43 8.88 11 7.5 11S5 9.43 5 7.5S6.12 4 7.5 4zM12.5 4H14v1.5C14 5.78 13.78 6 13.5 6S13 5.78 13 5.5S13.22 5 13.5 5L13 4.5C13 4.78 12.78 5 12.5 5S12 4.78 12 4.5S12.22 4 12.5 4zM7.5 5.5c-0.32 0 -0.53 0.11 -0.68 0.25h1.36C8.03 5.61 7.82 5.5 7.5 5.5zM6.63 6C6.58 6.09 6.56 6.17 6.54 6.25h1.91C8.44 6.17 8.42 6.09 8.38 6H6.63zM6.5 6.5v0.25h2V6.5H6.5zM6.5 7v0.25h2V7H6.5zM6.5 7.5v0.25h2V7.5H6.5zM6.5 8L6.25 8.25h2L8.5 8H6.5zM6 8.5c0 0 0.04 0.1 0.1 0.25H8.38L8 8.5H6zM1.5 9C1.78 9 2 9.22 2 9.5S1.78 10 1.5 10L2 10.5C2 10.22 2.22 10 2.5 10S3 10.22 3 10.5S2.78 11 2.5 11H1V9.5C1 9.22 1.22 9 1.5 9zM6.24 9C6.28 9.09 6.31 9.16 6.38 9.25h2.27C8.71 9.11 8.75 9 8.75 9H6.24zM13.5 9C13.78 9 14 9.22 14 9.5V11h-1.5c-0.28 0 -0.5 -0.22 -0.5 -0.5s0.22 -0.5 0.5 -0.5s0.5 0.22 0.5 0.5l0.5 -0.5C13.22 10 13 9.78 13 9.5S13.22 9 13.5 9zM6.57 9.5c0.08 0.09 0.16 0.18 0.26 0.25h1.42C8.35 9.67 8.43 9.59 8.5 9.5H6.57z"/></svg>`,
 };
 
 // Returns the correct directional arrow SVG based on sign of a numeric value
@@ -311,6 +313,7 @@ function populatePanel(p) {
     {
       label: 'Median Income',
       value: fmtDollar(p.med_hh_income),
+      icon: SVG.banknote,
     },
     {
       label: 'Median Rent',
@@ -332,7 +335,7 @@ function populatePanel(p) {
       label: '5-yr Income Change',
       value: fmtChg(p.income_change_pct),
       cls:   p.income_change_pct >= 0 ? 'positive' : 'negative',
-      icon:  SVG.crowd_of_people,
+      icon:  SVG.banknote,
       arrow: p.income_change_pct,
     },
   ];

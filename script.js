@@ -340,8 +340,10 @@ function populatePanel(p) {
   document.getElementById('topStats').innerHTML = topStats.map(s => `
     <div class="stat-cell">
       ${s.icon || ''}
-      <div class="stat-label">${s.label}</div>
-      <div class="stat-value ${s.cls || ''}">${s.value}${s.arrow != null ? dirArrow(s.arrow) : ''}</div>
+      <div class="stat-text">
+        <div class="stat-label">${s.label}</div>
+        <div class="stat-value ${s.cls || ''}">${s.value}${s.arrow != null ? dirArrow(s.arrow) : ''}</div>
+      </div>
     </div>`).join('');
 
   // ── Customer Base tab ──

@@ -209,8 +209,17 @@ body.panel-open #map {
   background: var(--surface);
   padding: 14px 16px;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Text column: label stacked above value */
+.stat-text {
+  display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .stat-label {
@@ -269,14 +278,14 @@ body.panel-open #map {
   border-bottom-color: var(--accent);
 }
 
-/* Pinhead icons inside stat cells — pinhead.ink */
+/* Pinhead icons inside stat cells — pinhead.ink
+   Height matches two lines of text: label (~12px) + gap (4px) + value (~20px) */
 .stat-icon {
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 34px;
+  height: 34px;
   fill: currentColor;
-  opacity: 0.45;
-  margin-bottom: 6px;
+  opacity: 0.4;
   flex-shrink: 0;
 }
 
